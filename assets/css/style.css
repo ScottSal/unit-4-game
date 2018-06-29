@@ -1,0 +1,137 @@
+/* CSS for Mario Party RPG */
+body {
+    background-color: black;
+    background-image: url(../images/castle_background.png);
+    background-size: 100% 900px;
+    background-repeat: no-repeat;
+    line-height: 1;
+}
+
+p {
+    color: red;
+}
+
+/* Navbar */
+.navbar {
+    padding: 0;
+    text-align: center;
+}
+
+.img-fluid {
+    width: 40%;
+    height: 50px;
+    margin-bottom: 4px;
+    margin-top: 6px;
+}
+
+/* Character display */
+.character_selection {
+    margin-top: 65px;
+    text-align: center;
+    width: 100%;
+    height: 190px;
+}
+
+#prompts {
+    font-size: 25px;
+    color: red;
+}
+
+#characterOptions {
+    display: inline;
+}
+
+.character {
+    display: inline-block;
+    height: 110px;
+    margin: 0px 10px;
+}
+
+.character img {
+    position: relative;
+    width: 90px;
+    border-radius: 50px;
+    border: 2px solid white;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.character img:hover {
+    background-color: goldenrod;
+    transform: scale(1.1);
+}
+
+.HPdisplay {
+    position: relative;
+    text-align: center;
+    font-size: 15px;
+    color: red;
+    margin-top: 5px;
+}
+
+/* Battle Arena Box */
+
+.battle_display {
+    width: 100%;
+    height: 300px;
+    float: left;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#character_display {
+    width: 100%;
+    height: 325px;
+    color: red;
+}
+
+#battle {
+    color: white;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+#messageLog {
+    width: 100%;
+    height: 125px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.attackButton {
+    background: red;
+    color: white;
+    border: 1px solid red;
+    border-radius: 20px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.attackButton:hover {
+    background: white;
+    color: red;
+    transform: scale(1.1);
+}
+
+.restartButton {
+    background: red;
+    color: white;
+    border: 1px solid red;
+    border-radius: 20px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.restartButton:hover {
+    background: white;
+    color: red;
+    transform: scale(1.1)
+}
+
+#enemy_selection {
+    width: 100%;
+    height: 320px;
+    color: red;
+}
