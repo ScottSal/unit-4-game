@@ -92,7 +92,7 @@ var Wario = {
 };
 
 var Waluigi = {
-    health: 200,
+    health: 190,
     attack: Math.floor(Math.random()* 40) + 1,
     counterattack: Math.floor(Math.random()* 20) + 1,
     imageUrl: "./assets/images/waluigi.png",
@@ -106,7 +106,7 @@ var Waluigi = {
 };
 
 var Goomba = {
-    health: 200,
+    health: 185,
     attack: Math.floor(Math.random()* 40) + 1,
     counterattack: Math.floor(Math.random()* 20) + 1,
     imageUrl: "./assets/images/goomba.png",
@@ -128,153 +128,212 @@ var WarioDiv = $("#Wario");
 var WaluigiDiv = $("#Waluigi");
 var GoombaDiv = $("#Goomba");
 
-var pipe = new Audio('./assets/sounds/warp_pipe.mp3');
-var death = new Audio('./assets/sounds/death_sound.mp3');
-var win = new Audio('./assets/sounds/win_sound.mp3');
-var mario = new Audio('./assets/sounds/mario_its_me.mp3');
-var bowser = new Audio('./assets/sounds/bowser_laugh.mp3');
-var luigi = new Audio('./assets/sounds/luigi_sound.mp3');
-var peach = new Audio('./assets/sounds/peach_sound.mp3');
-var wario = new Audio('./assets/sounds/wario_sound.mp3');
-var yoshi = new Audio('./assets/sounds/yoshi_sound.mp3');
-var waluigi = new Audio('./assets/sounds/waluigi_sound.mp3');
-var goomba = new Audio('./assets/sounds/goomba_sound.mp3');
+var pipe = new Audio('assets/sounds/warp_pipe.mp3');
+var death = new Audio('assets/sounds/death_sound.mp3');
+var win = new Audio('assets/sounds/win_sound.mp3');
+var mario = new Audio('assets/sounds/mario_its_me.mp3');
+var bowser = new Audio('assets/sounds/bowser_laugh.mp3');
+var luigi = new Audio('assets/sounds/luigi_sound.mp3');
+var peach = new Audio('assets/sounds/peach_sound.mp3');
+var wario = new Audio('assets/sounds/wario_sound.mp3');
+var yoshi = new Audio('assets/sounds/yoshi_sound.mp3');
+var waluigi = new Audio('assets/sounds/waluigi_sound.mp3');
+var goomba = new Audio('assets/sounds/goomba_sound.mp3');
 
 $(".character").on("click", function() {
-    if (MarioPartyRPG.gameStage === "initial") {
-        MarioPartyRPG.characterSelected === $(this).attr("id");
+    pipe.play();
+
+    if (MarioPartyRPG.gameStage == "initial") {
+        MarioPartyRPG.characterSelected = $(this).attr("id");
         $("id" + MarioPartyRPG.characterSelected).remove();
+
+        $("#prompts").text("Choose your next oppenent to battle!");
 
         console.log(MarioPartyRPG.characterSelected);
 
-        if (MarioPartyRPG.characterSelected === "Mario") {
+        if (MarioPartyRPG.characterSelected == "Mario") {
             mario.play();
-            MarioPartyRPG.characterObject === Mario;
+            MarioPartyRPG.characterObject = Mario;
             $("#character_display").append(MarioDiv);
-            $("#Mario").html('<p>Mario</p> <img src="./assets/images/mario.png height="250"> <p id="MarioHP">220 HP</p>');
+            $("#Mario").html('<p>Mario</p> <img src="./assets/images/mario.png" height="225"> <p id="MarioHP">220 HP</p>');
         }
 
-        if (MarioPartyRPG.characterSelected === "Luigi") {
+        if (MarioPartyRPG.characterSelected == "Luigi") {
             luigi.play();
-            MarioPartyRPG.characterObject === Luigi;
+            MarioPartyRPG.characterObject = Luigi;
             $("#character_display").append(LuigiDiv);
-            $("#Luigi").html('<p>Luigi</p> <img src="./assets/images/luigi.png height="250"> <p id="LuigiHP">195 HP</p>');
+            $("#Luigi").html('<p>Luigi</p> <img src="assets/images/luigi.png" height="225"> <p id="LuigiHP">195 HP</p>');
         }
 
-        if (MarioPartyRPG.characterSelected === "PrincessPeach") {
+        if (MarioPartyRPG.characterSelected == "PrincessPeach") {
             peach.play();
-            MarioPartyRPG.characterObject === PrincessPeach;
+            MarioPartyRPG.characterObject = PrincessPeach;
             $("#character_display").append(PrincessPeachDiv);
-            $("#PrincessPeach").html('<p>Princess Peach</p> <img src="./assets/images/princess_peach.png height="250"> <p id="PrincessPeachHP">200 HP</p>');
+            $("#PrincessPeach").html('<p>Princess Peach</p> <img src="assets/images/princess_peach.png" height="225"> <p id="PrincessPeachHP">200 HP</p>');
         }
 
-        if (MarioPartyRPG.characterSelected === "Yoshi") {
+        if (MarioPartyRPG.characterSelected == "Yoshi") {
             yoshi.play();
-            MarioPartyRPG.characterObject === Yoshi;
+            MarioPartyRPG.characterObject = Yoshi;
             $("#character_display").append(YoshiDiv);
-            $("#Yoshi").html('<p>Yoshi</p> <img src="./assets/images/yoshi.png height="250"> <p id="YoshiHP">205 HP</p>');
+            $("#Yoshi").html('<p>Yoshi</p> <img src="assets/images/yoshi.png" height="225"> <p id="YoshiHP">205 HP</p>');
         }
 
-        if (MarioPartyRPG.characterSelected === "Bowser") {
+        if (MarioPartyRPG.characterSelected == "Bowser") {
             bowser.play();
-            MarioPartyRPG.characterObject === Bowser;
+            MarioPartyRPG.characterObject = Bowser;
             $("#character_display").append(BowserDiv);
-            $("#Bowser").html('<p>Bowser</p> <img src="./assets/images/bowser.png height="250"> <p id="BowserHP">225 HP</p>');
+            $("#Bowser").html('<p>Bowser</p> <img src="assets/images/bowser.png" height="225"> <p id="BowserHP">225 HP</p>');
         }
 
-        if (MarioPartyRPG.characterSelected === "Wario") {
+        if (MarioPartyRPG.characterSelected == "Wario") {
             wario.play();
-            MarioPartyRPG.characterObject === Wario;
+            MarioPartyRPG.characterObject = Wario;
             $("#character_display").append(WarioDiv);
-            $("#Wario").html('<p>Wario</p> <img src="./assets/images/wario.png height="250"> <p id="WarioHP">215 HP</p>');
+            $("#Wario").html('<p>Wario</p> <img src="assets/images/wario.png" height="225"> <p id="WarioHP">215 HP</p>');
         }
 
-        if (MarioPartyRPG.characterSelected === "Waluigi") {
+        if (MarioPartyRPG.characterSelected == "Waluigi") {
             waluigi.play();
-            MarioPartyRPG.characterObject === Waluigi;
+            MarioPartyRPG.characterObject = Waluigi;
             $("#character_display").append(WaluigiDiv);
-            $("#Waluigi").html('<p>Waluigi</p> <img src="./assets/images/waluigi.png height="250"> <p id="WaluigiHP">190 HP</p>');
+            $("#Waluigi").html('<p>Waluigi</p> <img src="assets/images/waluigi.png" height="225"> <p id="WaluigiHP">190 HP</p>');
         }
 
-        if (MarioPartyRPG.characterSelected === "Goomba") {
+        if (MarioPartyRPG.characterSelected == "Goomba") {
             goomba.play();
-            MarioPartyRPG.characterObject === Goomba;
+            MarioPartyRPG.characterObject = Goomba;
             $("#character_display").append(GoombaDiv);
-            $("#Goomba").html('<p>Goomba</p> <img src="./assets/images/goomba.png height="250"> <p id="GoombaHP">185 HP</p>');
+            $("#Goomba").html('<p>Goomba</p> <img src="assets/images/goomba.png" height="225"> <p id="GoombaHP">185 HP</p>');
         }
 
 
-        MarioPartyRPG.gameStage === "opponents"
+        MarioPartyRPG.gameStage = "opponents"
 
-    } else if (MarioPartyRPG.gameStage === "opponents"){
-        MarioPartyRPG.opponentSelected === $(this).attr("id");
+    } else if (MarioPartyRPG.gameStage == "opponents"){
+        MarioPartyRPG.opponentSelected = $(this).attr("id");
         $("#" + MarioPartyRPG.opponentSelected).remove();
         
         console.log(MarioPartyRPG.opponentSelected);
 
-        if (MarioPartyRPG.opponentSelected === "Mario") {
+        if (MarioPartyRPG.opponentSelected == "Mario") {
             mario.play();
-            MarioPartyRPG.opponentObject === Mario;
-            $("#enemy_selected").append(MarioDiv);
-            $("#Mario").html('<p>Mario</p> <img src="./assets/images/mario.png" height="250"> <p id="MarioHP">220 HP</p>');
+            MarioPartyRPG.opponentObject = Mario;
+            $("#enemy_display").append(MarioDiv);
+            $("#Mario").html('<p>Mario</p> <img src="./assets/images/mario.png" height="225"> <p id="MarioHP">220 HP</p>');
         }
 
-        if (MarioPartyRPG.opponentSelected === "Luigi") {
+        if (MarioPartyRPG.opponentSelected == "Luigi") {
             luigi.play();
-            MarioPartyRPG.opponentObject === Luigi;
-            $("#enemy_selected").append(LuigiDiv);
-            $("#Luigi").html('<p>Luigi</p> <img src="./assets/images/luigi.png" height="250"> <p id="LuigiHP">195 HP</p>');
+            MarioPartyRPG.opponentObject = Luigi;
+            $("#enemy_display").append(LuigiDiv);
+            $("#Luigi").html('<p>Luigi</p> <img src="./assets/images/luigi.png" height="225"> <p id="LuigiHP">195 HP</p>');
         }
 
-        if (MarioPartyRPG.opponentSelected === "PrincessPeach") {
+        if (MarioPartyRPG.opponentSelected == "PrincessPeach") {
             peach.play();
-            MarioPartyRPG.opponentObject === PrincessPeach;
-            $("#enemy_selected").append(PrincessPeachDiv);
-            $("#PrincessPeach").html('<p>Princess Peach</p> <img src="./assets/images/princess_peach.png" height="250"> <p id="PrincessPeachHP">200 HP</p>');
+            MarioPartyRPG.opponentObject = PrincessPeach;
+            $("#enemy_display").append(PrincessPeachDiv);
+            $("#PrincessPeach").html('<p>Princess Peach</p> <img src="assets/images/princess_peach.png" height="225"> <p id="PrincessPeachHP">200 HP</p>');
         }
 
-        if (MarioPartyRPG.opponentSelected === "Yoshi") {
+        if (MarioPartyRPG.opponentSelected == "Yoshi") {
             yoshi.play();
-            MarioPartyRPG.opponentObject === Yoshi;
-            $("#enemy_selected").append(YoshiDiv);
-            $("#Yoshi").html('<p>Yoshi</p> <img src="./assets/images/yoshi.png" height="250"> <p id="YoshiHP">205 HP</p>');
+            MarioPartyRPG.opponentObject = Yoshi;
+            $("#enemy_display").append(YoshiDiv);
+            $("#Yoshi").html('<p>Yoshi</p> <img src="assets/images/yoshi.png" height="225"> <p Yoshi="YoshiHP">205 HP</p>');
         }
 
-        if (MarioPartyRPG.opponentSelected === "Bowser") {
+        if (MarioPartyRPG.opponentSelected == "Bowser") {
             bowser.play();
-            MarioPartyRPG.opponentObject === Bowser;
-            $("#enemy_selected").append(BowserDiv);
-            $("#Bowser").html('<p>Bowser</p> <img src="./assets/images/bowser.png" height="250"> <p id="BowserHP">225 HP</p>');
+            MarioPartyRPG.opponentObject = Bowser;
+            $("#enemy_display").append(BowserDiv);
+            $("#Bowser").html('<p>Bowser</p> <img src="assets/images/bowser.png" height="225"> <p id="BowserHP">225 HP</p>');
         }
 
-        if (MarioPartyRPG.opponentSelected === "Wario") {
+        if (MarioPartyRPG.opponentSelected == "Wario") {
             wario.play();
-            MarioPartyRPG.opponentObject === Wario;
-            $("#enemy_selected").append(WarioDiv);
-            $("#Wario").html('<p>Wario</p> <img src="./assets/images/wario.png" height="250"> <p id="WarioHP">215 HP</p>');
+            MarioPartyRPG.opponentObject = Wario;
+            $("#enemy_display").append(WarioDiv);
+            $("#Wario").html('<p>Wario</p> <img src="assets/images/wario.png" height="225"> <p id="WarioHP">215 HP</p>');
         }
 
-        if (MarioPartyRPG.opponentSelected === "Waluigi") {
+        if (MarioPartyRPG.opponentSelected == "Waluigi") {
             waluigi.play();
-            MarioPartyRPG.opponentObject === Waluigi;
-            $("#enemy_selected").append(WaluigiDiv);
-            $("#Waluigi").html('<p>Waluigi</p> <img src="./assets/images/waluigi.png" height="250"> <p id="WaluigiHP">190 HP</p>');
+            MarioPartyRPG.opponentObject = Waluigi;
+            $("#enemy_display").append(WaluigiDiv);
+            $("#Waluigi").html('<p>Waluigi</p> <img src="assets/images/waluigi.png" height="225"> <p id="WaluigiHP">190 HP</p>');
         }
 
-        if (MarioPartyRPG.opponentSelected === "Goomba") {
+        if (MarioPartyRPG.opponentSelected == "Goomba") {
             goomba.play();
-            MarioPartyRPG.opponentObject === Goomba;
-            $("#enemy_selected").append(GoombaDiv);
-            $("#Goomba").html('<p>Goomba</p> <img src="./assets/images/goomba.png" height="250"> <p id="GoombaHP">185 HP</p>');
+            MarioPartyRPG.opponentObject = Goomba;
+            $("#enemy_display").append(GoombaDiv);
+            $("#Goomba").html('<p>Goomba</p> <img src="assets/images/goomba.png" height="225"> <p id="GoombaHP">185 HP</p>');
         }
 
-        MarioPartyRPG.gameStage = "battle";
+        MarioPartyRPG.gameStage = "fight";
     }
 
     console.log(MarioPartyRPG.gameStage);
 });
 
 var renderMessage = function(message) {
+    var attackMessage = $("#messageLog");
+    var newMessage = $("<p>").text(message);
+    attackMessage.append(newMessage);
+
+    if (message == 'clearMessage') {
+      attackMessage.text('');
+    }
+  };
+
+$(".attackButton").on("click", function() {
+
+    if (MarioPartyRPG.gameStage == "fight") {
+        // var attackMessage = "You attacked" + opponentSelected.name + "for" + (characterSelected.attack) + "damage";
+        // renderMessage("clearMessage");
+        MarioPartyRPG.opponentObject.healthUpdate(MarioPartyRPG.characterObject.attack);
+        MarioPartyRPG.characterObject.attackUpdate();
+        
+        
+        if ((MarioPartyRPG.opponentObject.health <= 0) && (MarioPartyRPG.opponentsRemain >= 1)) {
+            $("#messageLog").text("Yahoo! You won!");
+            $("#" + MarioPartyRPG.opponentSelected).remove();
+            MarioPartyRPG.gameStage = "gameOver";
+        }
+
+        if ((MarioPartyRPG.opponentObject.health <= 0) && (MarioPartyRPG.opponentsRemain >= 1)) {
+            win.play();
+            $("#messageLog").text("Yahoo! You won!  Choose another opponent or press restart!");
+            $("#" + MarioPartyRPG.opponentSelected).remove();
+            MarioPartyRPG.gameStage = "opponents";
+            MarioPartyRPG.opponentsRemain = 4;
+        }
+
+        if (MarioPartyRPG.gameStage == "fight") {
+            // var attackMessage = opponentSelected.name + "attacked you back for" + (characterSelected.counterattack) + "damage";
+            // renderMessage(attackMessage);
+            // renderMessage(counterAttackMessage);
+            MarioPartyRPG.characterObject.healthUpdate(MarioPartyRPG.opponentObject.counterattack);
+          
+            if (MarioPartyRPG.characterObject.health <= 0) {
+                death.play();
+                $("#messageLog").text("Momma-mia! You lose! Press restart.");
+                MarioPartyRPG.gameStage = "gameOver";
+            }
+        }
+
+    }
+
+});//End of function...for Attack Phase//
+
+$("body").on("click", ".restartButton",function(){	
+    location.reload();
+
+});
+
+/* var renderMessage = function(message) {
     var attackMessage = $("#messageLog");
     var newMessage = $("<div>").text(message);
     attackMessage.append(newMessage);
@@ -310,6 +369,7 @@ $(".attackButton").on("click", function() {
             MarioPartyRPG.characterObject.healthUpdate(MarioPartyRPG.opponentObject.counterattack);
 
             if (MarioPartyRPG.characterObject.health <= 0) {
+                death.play();
                 $("#messageLog").text("Momma-mia! You lost! Press restart.");
                 MarioPartyRPG.gameStage = "gameOver";
             }
@@ -319,4 +379,4 @@ $(".attackButton").on("click", function() {
 
 $("body").on("click", ".restartButton", function(){
     location.reload();
-});
+}); */
