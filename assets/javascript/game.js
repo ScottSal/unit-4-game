@@ -1,3 +1,4 @@
+/* Playable characters */
 var MarioPartyRPG = {
     gameStage: "initial",
     characterSelected: "",
@@ -140,6 +141,7 @@ var yoshi = new Audio('assets/sounds/yoshi_sound.mp3');
 var waluigi = new Audio('assets/sounds/waluigi_sound.mp3');
 var goomba = new Audio('assets/sounds/goomba_sound.mp3');
 
+/*Character selection */
 $(".character").on("click", function() {
     pipe.play();
 
@@ -207,7 +209,7 @@ $(".character").on("click", function() {
             $("#Goomba").html('<p>Goomba</p> <img src="assets/images/goomba.png" height="225"> <p id="GoombaHP">185 HP</p>');
         }
 
-
+        /* Opponent selection */
         MarioPartyRPG.gameStage = "opponents"
 
     } else if (MarioPartyRPG.gameStage == "opponents"){
@@ -278,6 +280,7 @@ $(".character").on("click", function() {
     console.log(MarioPartyRPG.gameStage);
 });
 
+/* Attack sequence */
 var renderMessage = function(message) {
     var attackMessage = $("#messageLog");
     var newMessage = $("<p>").text(message);
@@ -291,8 +294,7 @@ var renderMessage = function(message) {
 $(".attackButton").on("click", function() {
 
     if (MarioPartyRPG.gameStage == "fight") {
-        // var attackMessage = "You attacked" + opponentSelected.name + "for" + (characterSelected.attack) + "damage";
-        // renderMessage("clearMessage");
+        
         MarioPartyRPG.opponentObject.healthUpdate(MarioPartyRPG.characterObject.attack);
         MarioPartyRPG.characterObject.attackUpdate();
         
@@ -312,9 +314,7 @@ $(".attackButton").on("click", function() {
         }
 
         if (MarioPartyRPG.gameStage == "fight") {
-            // var attackMessage = opponentSelected.name + "attacked you back for" + (characterSelected.counterattack) + "damage";
-            // renderMessage(attackMessage);
-            // renderMessage(counterAttackMessage);
+            
             MarioPartyRPG.characterObject.healthUpdate(MarioPartyRPG.opponentObject.counterattack);
           
             if (MarioPartyRPG.characterObject.health <= 0) {
@@ -326,57 +326,9 @@ $(".attackButton").on("click", function() {
 
     }
 
-});//End of function...for Attack Phase//
+});
 
 $("body").on("click", ".restartButton",function(){	
     location.reload();
 
 });
-
-/* var renderMessage = function(message) {
-    var attackMessage = $("#messageLog");
-    var newMessage = $("<div>").text(message);
-    attackMessage.append(newMessage);
-
-    if (message === 'clearMessage') {
-        attackMessage.text('');
-    }
-  };
-
-$(".attackButton").on("click", function() {
-
-    if (MarioPartyRPG.gameStage === "fight") {
-        MarioPartyRPG.opponentObject.healthUpdate(MarioPartyRPG.characterObject.attack);
-        MarioPartyRPG.characterObject.attackUpdate();
-
-        if ((MarioPartyRPG.opponentObject.health <= 0) && (MarioPartyRPG.opponentsRemain >= 1)) {
-            win.play();
-            $("#messageLog").text("Yahoo! You won!");
-            $("#" + MarioPartyRPG.opponentSelected).remove();
-            MarioPartyRPG.gameStage = "gameOver";
-        }
-
-        if ((MarioPartyRPG.opponentObject.health <= 0) && (MarioPartyRPG.opponentsRemain >= 1)) {
-            win.play();
-            $("#messageLog").text("Yahoo! You won! Choose another opponent or press restart!");
-            $("#" + MarioPartyRPG.opponentSelected).remove();
-            MarioPartyRPG.gameStage = "opponents";
-            MarioPartyRPG.opponentsRemain = 4;
-        }
-        
-        if (MarioPartyRPG.gameStage === "fight") {
-
-            MarioPartyRPG.characterObject.healthUpdate(MarioPartyRPG.opponentObject.counterattack);
-
-            if (MarioPartyRPG.characterObject.health <= 0) {
-                death.play();
-                $("#messageLog").text("Momma-mia! You lost! Press restart.");
-                MarioPartyRPG.gameStage = "gameOver";
-            }
-        }
-    }
-});
-
-$("body").on("click", ".restartButton", function(){
-    location.reload();
-}); */
