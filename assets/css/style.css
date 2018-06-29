@@ -8,7 +8,8 @@ body {
 }
 
 p {
-    color: red;
+    color: whitesmoke;
+    font-size: 16px;
 }
 
 /* Navbar */
@@ -34,7 +35,9 @@ p {
 
 #prompts {
     font-size: 25px;
-    color: red;
+    color: yellow;
+    font-weight: bold;
+    margin-top: 25px;
 }
 
 #characterOptions {
@@ -65,9 +68,9 @@ p {
 .HPdisplay {
     position: relative;
     text-align: center;
-    font-size: 15px;
-    color: red;
-    margin-top: 5px;
+    font-size: 16px;
+    color: black;
+    margin-top: 3px;
 }
 
 /* Battle Arena Box */
