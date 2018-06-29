@@ -273,3 +273,50 @@ $(".character").on("click", function() {
 
     console.log(MarioPartyRPG.gameStage);
 });
+
+var renderMessage = function(message) {
+    var attackMessage = $("#messageLog");
+    var newMessage = $("<div>").text(message);
+    attackMessage.append(newMessage);
+
+    if (message === 'clearMessage') {
+        attackMessage.text('');
+    }
+  };
+
+$(".attackButton").on("click", function() {
+
+    if (MarioPartyRPG.gameStage === "fight") {
+        MarioPartyRPG.opponentObject.healthUpdate(MarioPartyRPG.characterObject.attack);
+        MarioPartyRPG.characterObject.attackUpdate();
+
+        if ((MarioPartyRPG.opponentObject.health <= 0) && (MarioPartyRPG.opponentsRemain >= 1)) {
+            win.play();
+            $("#messageLog").text("Yahoo! You won!");
+            $("#" + MarioPartyRPG.opponentSelected).remove();
+            MarioPartyRPG.gameStage = "gameOver";
+        }
+
+        if ((MarioPartyRPG.opponentObject.health <= 0) && (MarioPartyRPG.opponentsRemain >= 1)) {
+            win.play();
+            $("#messageLog").text("Yahoo! You won! Choose another opponent or press restart!");
+            $("#" + MarioPartyRPG.opponentSelected).remove();
+            MarioPartyRPG.gameStage = "opponents";
+            MarioPartyRPG.opponentsRemain = 4;
+        }
+        
+        if (MarioPartyRPG.gameStage === "fight") {
+
+            MarioPartyRPG.characterObject.healthUpdate(MarioPartyRPG.opponentObject.counterattack);
+
+            if (MarioPartyRPG.characterObject.health <= 0) {
+                $("#messageLog").text("Momma-mia! You lost! Press restart.");
+                MarioPartyRPG.gameStage = "gameOver";
+            }
+        }
+    }
+});
+
+$("body").on("click", ".restartButton", function(){
+    location.reload();
+});
